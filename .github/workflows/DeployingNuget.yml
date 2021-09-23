@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  PROJECT_PATH: '.\YooniK.FaceApi\YooniK.FaceApi\YooniK.FaceApi.csproj'
+  PROJECT_PATH: '.\YooniK.Face\YooniK.Face.Client\YooniK.Face.Client.csproj'
   PACKAGE_OUTPUT_DIRECTORY: ${{ github.workspace }}\output
   NUGET_SOURCE_URL:  'https://api.nuget.org/v3/index.json'
 
