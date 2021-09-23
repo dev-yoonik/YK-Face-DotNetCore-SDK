@@ -297,7 +297,7 @@ namespace YooniK.Face.Client
         /// <param name="galleryId"> Gallery identifier. </param>
         /// <param name="personId"> Person identifier. </param>
         /// <returns></returns>
-        public async Task<TemplateResponse> GetPersonTemplatefromGalleryAsync(string galleryId, string personId)
+        public async Task<TemplateResponse> GetPersonTemplateFromGalleryAsync(string galleryId, string personId)
         {
             try
             {

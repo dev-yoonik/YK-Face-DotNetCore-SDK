@@ -159,7 +159,7 @@ namespace YooniK.Face.Client.Tests
         [TestCase(Valid.GalleryId, Valid.PersonId)]
         public void GetPersonTemplate_ValidParameters_Success(string galleryId, string personId)
         {
-            Assert.DoesNotThrowAsync(async () => await FaceClient.GetPersonTemplatefromGalleryAsync(galleryId, personId));
+            Assert.DoesNotThrowAsync(async () => await FaceClient.GetPersonTemplateFromGalleryAsync(galleryId, personId));
         }
 
 

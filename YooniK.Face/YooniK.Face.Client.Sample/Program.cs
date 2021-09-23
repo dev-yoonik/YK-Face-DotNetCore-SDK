@@ -28,41 +28,40 @@ namespace YooniK.Face.Sample
 
                 var serverInfo = new ConnectionInformation(baseUrl, subscriptionKey);
 
-                FaceClient FaceClient = new FaceClient(serverInfo);
-
+                FaceClient faceClient = new FaceClient(serverInfo);
 
                 string base64Marcelo1 = ImageToBase64String(Marcelo1stPhotoPath);
                 string base64Marcelo2 = ImageToBase64String(Marcelo2ndPhotoPath);
 
-                VerifyImagesResponse verifyImages = await FaceClient.VerifyImagesAsync(base64Marcelo1, base64Marcelo2);
+                VerifyImagesResponse verifyImages = await faceClient.VerifyImagesAsync(base64Marcelo1, base64Marcelo2);
                 Console.WriteLine($"Similarity Score: { verifyImages.Score }");
 
-                List<ProcessResponse> process = await FaceClient.ProcessAync(base64Marcelo1);
+                List<ProcessResponse> process = await faceClient.ProcessAync(base64Marcelo1);
                 string Marcelo1Template = process.Count == 1 ? process[0].Template : null;
 
-                List<ProcessResponse> process2 = await FaceClient.ProcessAync(base64Marcelo2);
+                List<ProcessResponse> process2 = await faceClient.ProcessAync(base64Marcelo2);
                 string Marcelo2Template = process2.Count == 1 ? process2[0].Template : null;
 
-                VerifyResponse verify = await FaceClient.VerifyAsync(Marcelo1Template, Marcelo2Template);
+                VerifyResponse verify = await faceClient.VerifyAsync(Marcelo1Template, Marcelo2Template);
                 Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
 
                 string galleryGuid = Guid.NewGuid().ToString();
                 string personGuid = Guid.NewGuid().ToString();
                 string personGuid2 = Guid.NewGuid().ToString();
 
-                await FaceClient.AddGalleryAsync(galleryGuid);
-                await FaceClient.AddPersonToGalleryAsync(galleryGuid, personGuid, Marcelo1Template);
-                await FaceClient.AddPersonToGalleryAsync(galleryGuid, personGuid2, Marcelo2Template);
+                await faceClient.AddGalleryAsync(galleryGuid);
+                await faceClient.AddPersonToGalleryAsync(galleryGuid, personGuid, Marcelo1Template);
+                await faceClient.AddPersonToGalleryAsync(galleryGuid, personGuid2, Marcelo2Template);
 
-                TemplateResponse template = await FaceClient.GetPersonTemplatefromGalleryAsync(galleryGuid, personGuid);
+                TemplateResponse template = await faceClient.GetPersonTemplateFromGalleryAsync(galleryGuid, personGuid);
                 Console.WriteLine(template.Template);
 
-                EnrolledIdsResponse enrolledIds = await FaceClient.GetEnrolledPersonsAsync(galleryGuid);
+                EnrolledIdsResponse enrolledIds = await faceClient.GetEnrolledPersonsAsync(galleryGuid);
                 foreach (string enrolledId in enrolledIds)
                     Console.Write(enrolledId);
 
-                await FaceClient.RemovePersonFromGalleryAsync(galleryGuid, personGuid);
-                await FaceClient.RemoveGalleryAsync(galleryGuid);
+                await faceClient.RemovePersonFromGalleryAsync(galleryGuid, personGuid);
+                await faceClient.RemoveGalleryAsync(galleryGuid);
             }
             catch (HttpRequestException)
             {
