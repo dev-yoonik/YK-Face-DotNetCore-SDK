@@ -22,7 +22,7 @@ namespace YooniK.Face.Client.Tests
         private string subscritionKey = Valid.SubscriptionKey;
 
         [OneTimeSetUp]
-        public void SetUp()
+        public void OneTimeSetUp()
         {
             var connectionInformation = new ConnectionInformation(baseUrl, subscritionKey);
             faceClient = new FaceClient(connectionInformation);
