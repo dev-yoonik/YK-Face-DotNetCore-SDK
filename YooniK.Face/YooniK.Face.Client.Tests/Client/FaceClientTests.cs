@@ -12,7 +12,7 @@ using System.Net;
 namespace YooniK.Face.Client.Tests
 {
     /// <summary>
-    /// Please note that these are functional tests that need a proper connect to the YooniK.FaceApi to  run.
+    ///     Please note that these are functional tests that need a proper connection to the YooniK.FaceAPI to run.
     /// </summary>
     class FaceClientTests
     {
