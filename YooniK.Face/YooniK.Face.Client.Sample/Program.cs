@@ -21,7 +21,7 @@ namespace YooniK.Face.Sample
 
         static async Task<int> Main(string[] args)
         {
-            string baseUrl = "http://localhost:5001/v1.1/yoonik/";
+            string baseUrl = "YOUR-API-ENDPOINT";
             string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
 
             try
