@@ -25,11 +25,11 @@ namespace YooniK.Face.Client
 
     public class FaceClient
     {
-        private IServiceClient _clientService;
+        private IServiceClient _serviceClient;
 
         public FaceClient(ConnectionInformation connectionInformation)
         {
-           _clientService = new ServiceClient(connectionInformation);
+           _serviceClient = new ServiceClient(connectionInformation);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace YooniK.Face.Client
                     request: process
                     );
 
-                return await _clientService.SendRequestAsync<List<ProcessResponse>>(message);
+                return await _serviceClient.SendRequestAsync<List<ProcessResponse>>(message);
             }
             catch (Exception)
             {
@@ -82,7 +82,7 @@ namespace YooniK.Face.Client
                     request: verify
                     );
 
-               return await _clientService.SendRequestAsync<VerifyResponse>(message);
+               return await _serviceClient.SendRequestAsync<VerifyResponse>(message);
             }
             catch (Exception)
             {
@@ -111,7 +111,7 @@ namespace YooniK.Face.Client
                     request: verifyId
                     );
 
-                return await _clientService.SendRequestAsync<VerifyIdResponse>(message);
+                return await _serviceClient.SendRequestAsync<VerifyIdResponse>(message);
             }
             catch (Exception)
             {
@@ -137,7 +137,7 @@ namespace YooniK.Face.Client
                     request: verifyImages
                     );
 
-                return await _clientService.SendRequestAsync<VerifyImagesResponse>(message);
+                return await _serviceClient.SendRequestAsync<VerifyImagesResponse>(message);
             }
             catch (Exception)
             {
@@ -167,7 +167,7 @@ namespace YooniK.Face.Client
                     request: identify
                     );
 
-                return await _clientService.SendRequestAsync<List<IdentifyResponse>>(message);
+                return await _serviceClient.SendRequestAsync<List<IdentifyResponse>>(message);
             }
             catch (Exception)
             {
@@ -191,7 +191,7 @@ namespace YooniK.Face.Client
                     httpMethod: HttpMethod.Post,
                     urlRelativePath: $"{GalleryEndpoints.Gallery}{galleryId}"
                     );
-                await _clientService.SendRequestAsync(message);
+                await _serviceClient.SendRequestAsync(message);
             }
             catch (Exception)
             {
@@ -213,7 +213,7 @@ namespace YooniK.Face.Client
                     urlRelativePath: $"{GalleryEndpoints.Gallery}{galleryId}"
                 );
 
-                await _clientService.SendRequestAsync(message);
+                await _serviceClient.SendRequestAsync(message);
             }
             catch (Exception)
             {
@@ -235,7 +235,7 @@ namespace YooniK.Face.Client
                    urlRelativePath: $"{GalleryEndpoints.Gallery}{galleryId}"
                 );
 
-                return await _clientService.SendRequestAsync<EnrolledIdsResponse>(message);
+                return await _serviceClient.SendRequestAsync<EnrolledIdsResponse>(message);
             }
             catch (Exception)
             {
@@ -258,7 +258,7 @@ namespace YooniK.Face.Client
                    urlRelativePath: $"{GalleryEndpoints.Gallery}{galleryId}/{personId}"
                 );
 
-                await _clientService.SendRequestAsync(message);
+                await _serviceClient.SendRequestAsync(message);
             }
             catch (Exception)
             {
@@ -284,7 +284,7 @@ namespace YooniK.Face.Client
                   request: request,
                   urlRelativePath: $"{GalleryEndpoints.Gallery}{galleryId}/{personId}"
                 );
-                await _clientService.SendRequestAsync<string>(message);
+                await _serviceClient.SendRequestAsync<string>(message);
             }
             catch (Exception)
             {
@@ -307,7 +307,7 @@ namespace YooniK.Face.Client
                   urlRelativePath: $"{GalleryEndpoints.Gallery}{galleryId}/{personId}"
                 );
 
-                return await _clientService.SendRequestAsync<TemplateResponse>(message);
+                return await _serviceClient.SendRequestAsync<TemplateResponse>(message);
 
             }
             catch (Exception)
