@@ -56,9 +56,8 @@ string secondPhotoTemplate = process2.Count == 1 ? process2[0].Template : null;
 VerifyResponse verify = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
 Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
 
-// If you're interest in using YooniK.Face API for identification purposes, please visit our sample project.
 
 ```
 
 
-### If you're interest in using YooniK.Face Api for identification purposes, please visit our sample project.
+### If you're interest in using YooniK.Face API for identification purposes, please visit our sample project.
