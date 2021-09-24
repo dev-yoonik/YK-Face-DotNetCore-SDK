@@ -122,14 +122,14 @@ namespace YooniK.Face.Client
         /// <summary>
         ///     Given two images in base 64 format it calculates the score of similarity between the two faces.
         /// </summary>
-        /// <param name="b64FirstImage"> First base 64 string image. </param>
-        /// <param name="b64SecondImage"> Second base 64 string image. </param>
+        /// <param name="firstImage"> First base 64 string image. </param>
+        /// <param name="secondImage"> Second base 64 string image. </param>
         /// <returns><see cref="VerifyImagesResponse"/></returns>
-        public async Task<VerifyImagesResponse> VerifyImagesAsync(string b64FirstImage, string b64SecondImage)
+        public async Task<VerifyImagesResponse> VerifyImagesAsync(string firstImage, string secondImage)
         {
             try
             {
-                var verifyImages = new VerifyImagesRequest(b64FirstImage, b64SecondImage);
+                var verifyImages = new VerifyImagesRequest(firstImage, secondImage);
 
                 var message = new RequestMessage(
                     httpMethod: HttpMethod.Post,
