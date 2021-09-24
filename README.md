@@ -40,46 +40,34 @@ public static string ImageToBase64String(string filepath)
 
 // (....)
 
-
 // Example data
 string baseUrl = "YOUR-API-ENDPOINT";
 string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
+string firstPhoto = "YOUR-FIRST-PHOTO-FILEPATH";
+string secondPhoto = "YOUR-SECOND-PHOTO-FILEPATH";
 
-var serverInfo = new ConnectionInformation(baseUrl, subscriptionKey);
+var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 
-FaceClient faceClient = new FaceClient(serverInfo);
+// Instantiates the FaceClient, passing its server information to establish a connection
+FaceClient faceClient = new FaceClient(faceConnectionInformation);
 
-string base64Marcelo1 = ImageToBase64String(Marcelo1stPhotoPath);
-string base64Marcelo2 = ImageToBase64String(Marcelo2ndPhotoPath);
+// Represents the photo files in base 64 string
+string firstPhotoInBase64 = ImageToBase64String(firstPhoto);
+string secondPhotoInBase64 = ImageToBase64String(secondPhoto);
 
-VerifyImagesResponse verifyImages = await faceClient.VerifyImagesAsync(base64Marcelo1, base64Marcelo2);
+// Verifies the faces similarity between two images in base 64
+VerifyImagesResponse verifyImages = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);
 Console.WriteLine($"Similarity Score: { verifyImages.Score }");
 
-List<ProcessResponse> process = await faceClient.ProcessAync(base64Marcelo1);
-string Marcelo1Template = process.Count == 1 ? process[0].Template : null;
+// Processes all the image containing faces, and returning them in a list. This photo only contains one face. 
+List<ProcessResponse> process = await faceClient.ProcessAync(firstPhotoInBase64);
+string firstPhotoTemplate = process.Count == 1 ? process[0].Template : null;
 
-List<ProcessResponse> process2 = await faceClient.ProcessAync(base64Marcelo2);
-string Marcelo2Template = process2.Count == 1 ? process2[0].Template : null;
+List<ProcessResponse> process2 = await faceClient.ProcessAync(secondPhotoInBase64);
+string secondPhotoTemplate = process2.Count == 1 ? process2[0].Template : null;
 
-VerifyResponse verify = await faceClient.VerifyAsync(Marcelo1Template, Marcelo2Template);
+// Verifies the faces similarity between the extracted biometric template from the processed images
+VerifyResponse verify = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
 Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
-
-string galleryGuid = Guid.NewGuid().ToString();
-string personGuid = Guid.NewGuid().ToString();
-string personGuid2 = Guid.NewGuid().ToString();
-
-await faceClient.AddGalleryAsync(galleryGuid);
-await faceClient.AddPersonToGalleryAsync(galleryGuid, personGuid, Marcelo1Template);
-await faceClient.AddPersonToGalleryAsync(galleryGuid, personGuid2, Marcelo2Template);
-
-TemplateResponse template = await faceClient.GetPersonTemplateFromGalleryAsync(galleryGuid, personGuid);
-Console.WriteLine(template.Template);
-
-EnrolledIdsResponse enrolledIds = await faceClient.GetEnrolledPersonsAsync(galleryGuid);
-foreach (string enrolledId in enrolledIds)
-    Console.Write(enrolledId);
-
-await faceClient.RemovePersonFromGalleryAsync(galleryGuid, personGuid);
-await faceClient.RemoveGalleryAsync(galleryGuid);
 
 ```

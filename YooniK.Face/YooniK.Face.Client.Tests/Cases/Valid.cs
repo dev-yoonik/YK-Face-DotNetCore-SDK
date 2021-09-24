@@ -12,8 +12,8 @@ namespace YooniK.Face.DataExamples
     {
         #region API Settings
         
-        public const string BaseUrl = "INSERT_HERE";
-        public const string SubscriptionKey = "INSERT_HERE";
+        public const string BaseUrl = "YOUR-API-ENDPOINT";
+        public const string SubscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
         
         #endregion
 
