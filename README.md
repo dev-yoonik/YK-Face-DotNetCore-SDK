@@ -13,7 +13,7 @@ For more information please [contact us](mailto:info@yoonik.me).
 
 To import the latest this solution into your project, enter the following command in the NuGet Package Manager Console in Visual Studio:
 
-For other installation methods, see [YooniK Face Client Nuget](https://www.nuget.org/packages/YooniK.Face.Client/)
+For other installation methods, see [YooniK.Face.Client Nuget](https://www.nuget.org/packages/YooniK.Face.Client/)
 
 ```
 PM> Install-Package YooniK.Face.Client
