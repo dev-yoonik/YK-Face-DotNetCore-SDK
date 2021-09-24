@@ -21,7 +21,7 @@ namespace YooniK.Face.Sample
 
         static async Task<int> Main(string[] args)
         {
-            string baseUrl = "YOUR-API-ENDPOINT";
+            string baseUrl = "http://localhost:5001/v1.1/yoonik/";
             string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
 
             try
@@ -60,7 +60,7 @@ namespace YooniK.Face.Sample
                 // Creating a Gallery
                 await faceClient.AddGalleryAsync(galleryGuid);
                 
-                // Saving the person in the specific gallery
+                // Saving a person in a specific gallery
                 await faceClient.AddPersonToGalleryAsync(galleryGuid, personGuid, firstPhotoTemplate);
                 await faceClient.AddPersonToGalleryAsync(galleryGuid, personGuid2, secondPhotoTemplate);
 
@@ -68,7 +68,7 @@ namespace YooniK.Face.Sample
                 TemplateResponse template = await faceClient.GetPersonTemplateFromGalleryAsync(galleryGuid, personGuid);
                 Console.WriteLine($"Stored template: {template.Template}");
 
-                // Gets the list of enrolled persons in a given gallery id
+                // Gets the list of enrolled persons in a specific gallery
                 EnrolledIdsResponse enrolledIds = await faceClient.GetEnrolledPersonsAsync(galleryGuid);
                 if (enrolledIds.Count == 0)
                     Console.WriteLine($"There aren't enrolled persons in {galleryGuid} at this moment.");
@@ -79,10 +79,10 @@ namespace YooniK.Face.Sample
                         Console.Write(enrolledId);
                 }
 
-                // Removes a specific person from the gallery
+                // Removes a specific person from a gallery
                 await faceClient.RemovePersonFromGalleryAsync(galleryGuid, personGuid);
                 
-                // Deletes the entire gallery collection and its instance
+                // Deletes an entire gallery collection and its instance
                 await faceClient.RemoveGalleryAsync(galleryGuid);
             }
             catch (Exception)
