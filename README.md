@@ -24,9 +24,9 @@ PM> Install-Package YooniK.Face.Client
 ## Example
 
 
-Keep in mind that the following FaceClient methods Yoonik.Services.Client which uses HttpClient to handle the API calls. In Services we use 'EnsureSuccessStatusCode()', so in case an HTTP Response fails an exception is thrown and can be caught right here at this abstraction level.
+Keep in mind that the following FaceClient methods use Yoonik.Services.Client which uses HttpClient to handle the API calls. Here its used 'EnsureSuccessStatusCode()', in case an HTTP Response has a non success HTTP Status Code a exception is thrown and can be caught right here at this abstraction level.
 
-For more information feel free to dig around at [YooniK Services Client](https://github.com/dev-yoonik/YK-Services-Client-DotNetCore/)
+For more information feel free to dig around at [YooniK.Services.Client](https://github.com/dev-yoonik/YK-Services-Client-DotNetCore/)
 
 Use it:
 
