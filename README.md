@@ -5,7 +5,7 @@
 
 [![License](https://img.shields.io/pypi/l/yk_face.svg)](https://github.com/dev-yoonik/YK-Face-DotNetCore-SDK/blob/master/LICENSE)
 
-This repository contains the necessary infrastructure to communicate with our FaceAPI in a very simple plug and play way, an [YooniK Services](https://yoonik.me) offering.
+This repository implements an integration SDK to facilitate the consumption of the YooniK.Face API, an [YooniK Services](https://yoonik.me) offering.
 
 For more information please [contact us](mailto:info@yoonik.me).
 
@@ -31,14 +31,6 @@ For more information feel free to dig around at [YooniK Services Client](https:/
 Use it:
 
 ```csharp
-// Example function that parses an file image to base 64 string
-public static string ImageToBase64String(string filepath)
-{
-    byte[] imageArray = System.IO.File.ReadAllBytes(filepath);
-    return Convert.ToBase64String(imageArray);
-}
-
-// (....)
 
 // Example data
 string baseUrl = "YOUR-API-ENDPOINT";
@@ -50,10 +42,6 @@ var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionK
 
 // Instantiates the FaceClient, passing its server information to establish a connection
 FaceClient faceClient = new FaceClient(faceConnectionInformation);
-
-// Represents the photo files in base 64 string
-string firstPhotoInBase64 = ImageToBase64String(firstPhoto);
-string secondPhotoInBase64 = ImageToBase64String(secondPhoto);
 
 // Verifies the faces similarity between two images in base 64
 VerifyImagesResponse verifyImages = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);
@@ -69,5 +57,7 @@ string secondPhotoTemplate = process2.Count == 1 ? process2[0].Template : null;
 // Verifies the faces similarity between the extracted biometric template from the processed images
 VerifyResponse verify = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
 Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
+
+// If you're interest in using YooniK.Face API for identification purposes, please visit our sample project.
 
 ```
