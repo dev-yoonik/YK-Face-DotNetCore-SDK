@@ -35,8 +35,6 @@ Use it:
 // Example data
 string baseUrl = "YOUR-API-ENDPOINT";
 string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
-string firstPhoto = "YOUR-FIRST-PHOTO-FILEPATH";
-string secondPhoto = "YOUR-SECOND-PHOTO-FILEPATH";
 
 var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 
