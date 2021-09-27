@@ -7,7 +7,7 @@
 
 This repository implements an integration SDK to facilitate the consumption of the YooniK.Face API, an [YooniK Services](https://yoonik.me) offering.
 
-For more information please [contact us](mailto:info@yoonik.me).
+For more information please [contact us](mailto:tech@yoonik.me).
 
 ## Getting started
 
@@ -23,22 +23,20 @@ PM> Install-Package YooniK.Face.Client
 
 ## Example
 
+FaceClient methods depend on Yoonik.Services.Client that uses HttpClient to handle the API calls.
 
-Keep in mind that the following FaceClient methods use Yoonik.Services.Client which uses HttpClient to handle the API calls. Here its used 'EnsureSuccessStatusCode()', in case an HTTP Response has a non success HTTP Status Code a exception is thrown and can be caught right here at this abstraction level.
-
-For more information feel free to dig around at [YooniK.Services.Client](https://github.com/dev-yoonik/YK-Services-Client-DotNetCore/)
+For more information feel free to take a look at [YooniK.Services.Client](https://github.com/dev-yoonik/YK-Services-Client-DotNetCore/)
 
 Use it:
 
 ```csharp
 
-// Example data
+// Edit your access credentials
 string baseUrl = "YOUR-API-ENDPOINT";
 string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
-
 var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 
-// Instantiates the FaceClient, passing its server information to establish a connection
+// Instantiate the FaceClient and establish a connection
 FaceClient faceClient = new FaceClient(faceConnectionInformation);
 
 // Verifies the faces similarity between two images in base 64
@@ -55,9 +53,7 @@ string secondPhotoTemplate = process2.Count == 1 ? process2[0].Template : null;
 // Verifies the faces similarity between the extracted biometric template from the processed images
 VerifyResponse verify = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
 Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
-
-
 ```
 
 
-### If you're interest in using YooniK.Face API for identification purposes, please visit our sample project.
+ If you're interest in using YooniK.Face API for identification purposes, please visit our [sample project](https://github.com/dev-yoonik/YK-Face-SDK-DotNetCore/tree/main/YooniK.Face/YooniK.Face.Client.Sample).
