@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="YooniK.Services.Client" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\YooniK.Face.Client\YooniK.Face.Client.csproj" />
   </ItemGroup>
 
