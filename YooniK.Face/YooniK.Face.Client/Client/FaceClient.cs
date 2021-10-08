@@ -284,7 +284,7 @@ namespace YooniK.Face.Client
                   request: request,
                   urlRelativePath: $"{GalleryEndpoints.Gallery}{galleryId}/{personId}"
                 );
-                await _serviceClient.SendRequestAsync<string>(message);
+                await _serviceClient.SendRequestAsync(message);
             }
             catch (Exception)
             {
