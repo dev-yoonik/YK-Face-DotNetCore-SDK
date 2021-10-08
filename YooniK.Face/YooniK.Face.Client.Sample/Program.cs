@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using YooniK.Services.Client.Common;
 using YooniK.Face.Client;
@@ -21,8 +20,8 @@ namespace YooniK.Face.Sample
 
         static async Task<int> Main(string[] args)
         {
-            string baseUrl = "YOUR-API-ENDPOINT";
-            string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
+            string baseUrl = Environment.GetEnvironmentVariable("YK_FACE_BASE_URL");
+            string subscriptionKey = Environment.GetEnvironmentVariable("YK_FACE_X_API_KEY");
 
             try
             {                

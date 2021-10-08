@@ -18,8 +18,8 @@ namespace YooniK.Face.Client.Tests
     {
         private FaceClient faceClient;
 
-        private string baseUrl = Valid.BaseUrl;
-        private string subscritionKey = Valid.SubscriptionKey;
+        private string baseUrl = Environment.GetEnvironmentVariable("YK_FACE_BASE_URL");
+        private string subscritionKey = Environment.GetEnvironmentVariable("YK_FACE_X_API_KEY");
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
