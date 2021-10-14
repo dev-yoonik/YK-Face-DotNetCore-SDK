@@ -39,10 +39,10 @@ Machine restart could be required.
 // Edit your access credentials
 string baseUrl = "YOUR-API-ENDPOINT";
 string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
-var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionKey);
+var faceInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 
 // Instantiate the FaceClient and establish a connection
-var faceClient = new FaceClient(faceConnectionInformation);
+var faceClient = new FaceClient(faceInformation);
 
 // Verifies the faces similarity between two images in base 64
 VerifyImagesResponse verifyImages = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);
