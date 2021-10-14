@@ -20,15 +20,14 @@ namespace YooniK.Face.Sample
 
         static async Task<int> Main(string[] args)
         {
-            string baseUrl = Environment.GetEnvironmentVariable("YK_FACE_BASE_URL");
-            string subscriptionKey = Environment.GetEnvironmentVariable("YK_FACE_X_API_KEY");
+            string baseUrl = "YOUR-API-ENDPOINT";
+            string subscriptionKey = "YOUR-X-API-KEY";
 
             try
             {                
                 var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionKey);
                 
-                // If your environment variables are set just use FaceClient empty constructor
-                // Instantiates the FaceClient, passing its server connection information
+                // If your environment variables are set use the FaceClient empty constructor
                 var faceClient = new FaceClient(faceConnectionInformation);
 
                 // Represents the photo files in base 64 string

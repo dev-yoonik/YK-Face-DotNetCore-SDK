@@ -36,7 +36,7 @@ You can also use environment variables (YK_FACE_BASE_URL and YK_FACE_X_API_KEY) 
 
 // Edit your access credentials
 string baseUrl = "YOUR-API-ENDPOINT";
-string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
+string subscriptionKey = "YOUR-X-API-KEY";
 var faceInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 
 // If you have the environment variables set, remove the above and use "var faceClient = new FaceClient()"
