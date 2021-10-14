@@ -30,7 +30,7 @@ For more information feel free to take a look at [YooniK.Services.Client](https:
 
 Use it:
 
-You can also use environment variables (YK_FACE_BASE_URL and YK_FACE_X_API_KEY) to identify the access data. Machine restart could be required.
+You can also use environment variables (YK_FACE_BASE_URL and YK_FACE_X_API_KEY) to authenticate. Machine restart could be required.
 
 ```csharp
 
