@@ -1,9 +1,10 @@
 
 ![https://yoonik.me/wp-content/uploads/2019/08/cropped-LogoV4_TRANSPARENT.png](https://yoonik.me/wp-content/uploads/2019/08/cropped-LogoV4_TRANSPARENT.png)
 
-# YooniK Face API Client DotNet SDK
+# YooniK Face API Client DotNetCore SDK
 
-[![License](https://img.shields.io/pypi/l/yk_face.svg)](https://github.com/dev-yoonik/YK-Face-DotNetCore-SDK/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/dev-yoonik/YK-Face-DotNetCore-SDK)](https://github.com/dev-yoonik/YK-Face-SDK-DotNetCore/blob/main/LICENSE)
+[![Version](https://img.shields.io/nuget/v/YooniK.Face.Client)](https://www.nuget.org/packages/YooniK.Face.Client/)
 
 This repository implements an integration SDK to facilitate the consumption of the YooniK.Face API, an [YooniK Services](https://yoonik.me) offering.
 
@@ -29,15 +30,17 @@ For more information feel free to take a look at [YooniK.Services.Client](https:
 
 Use it:
 
+You can also use environment variables (YK_FACE_BASE_URL and YK_FACE_X_API_KEY) to authenticate. Machine restart could be required.
+
 ```csharp
 
 // Edit your access credentials
 string baseUrl = "YOUR-API-ENDPOINT";
-string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
-var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionKey);
+string subscriptionKey = "YOUR-X-API-KEY";
+var faceInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 
-// Instantiate the FaceClient and establish a connection
-FaceClient faceClient = new FaceClient(faceConnectionInformation);
+// If you have the environment variables set, remove the above and use "var faceClient = new FaceClient()"
+var faceClient = new FaceClient(faceInformation);
 
 // Verifies the faces similarity between two images in base 64
 VerifyImagesResponse verifyImages = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);

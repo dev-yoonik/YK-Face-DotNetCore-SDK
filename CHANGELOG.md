@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 
+### Added
+
+- FaceClient empty constructor that automatically reads the environment variables
+
+### Changed
+
+- README.md badges
+- FaceClient argument type from ConnectionInformation to IConnectionInformation
+
 ## [1.0.1] - 2021-10-08
 
 ### Changed

@@ -25,9 +25,23 @@ namespace YooniK.Face.Client
 
     public class FaceClient
     {
+        private readonly string ENVIRONMENT_VARIABLE_BASE_URL = "YK_FACE_BASE_URL";
+        private readonly string ENVIRONMENT_VARIABLE_X_API_KEY = "YK_FACE_X_API_KEY";
+
         private IServiceClient _serviceClient;
 
-        public FaceClient(ConnectionInformation connectionInformation)
+        public FaceClient()
+        {
+            string baseUrl = Environment.GetEnvironmentVariable(ENVIRONMENT_VARIABLE_BASE_URL);
+            string x_api_key = Environment.GetEnvironmentVariable(ENVIRONMENT_VARIABLE_X_API_KEY);
+            if (baseUrl == null)
+                throw new ArgumentException($"Environment Variable '{ENVIRONMENT_VARIABLE_BASE_URL}' not found. ");
+            if (x_api_key == null)
+                throw new ArgumentException($"Environment Variable '{ENVIRONMENT_VARIABLE_X_API_KEY}' not found. ");
+            _serviceClient = new ServiceClient(new ConnectionInformation(baseUrl, x_api_key));
+        }
+
+        public FaceClient(IConnectionInformation connectionInformation)
         {
            _serviceClient = new ServiceClient(connectionInformation);
         }
