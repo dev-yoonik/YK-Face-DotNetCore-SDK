@@ -41,7 +41,7 @@ namespace YooniK.Face.Client
             _serviceClient = new ServiceClient(new ConnectionInformation(baseUrl, x_api_key));
         }
 
-        public FaceClient(ConnectionInformation connectionInformation)
+        public FaceClient(IConnectionInformation connectionInformation)
         {
            _serviceClient = new ServiceClient(connectionInformation);
         }
