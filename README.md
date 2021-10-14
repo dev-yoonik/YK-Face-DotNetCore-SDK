@@ -3,8 +3,8 @@
 
 # YooniK Face API Client DotNetCore SDK
 
-![License](https://img.shields.io/github/license/dev-yoonik/YK-Face-DotNetCore-SDK)
-![Version](https://img.shields.io/nuget/v/YooniK.Face.Client)
+[![License](https://img.shields.io/github/license/dev-yoonik/YK-Face-DotNetCore-SDK)](https://github.com/dev-yoonik/YK-Face-SDK-DotNetCore/blob/main/LICENSE)
+[![Version](https://img.shields.io/nuget/v/YooniK.Face.Client)](https://www.nuget.org/packages/YooniK.Face.Client/)
 
 This repository implements an integration SDK to facilitate the consumption of the YooniK.Face API, an [YooniK Services](https://yoonik.me) offering.
 
