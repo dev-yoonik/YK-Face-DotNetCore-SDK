@@ -27,8 +27,9 @@ namespace YooniK.Face.Sample
             {                
                 var faceConnectionInformation = new ConnectionInformation(baseUrl, subscriptionKey);
                 
+                // If your environment variables are set just use FaceClient empty constructor
                 // Instantiates the FaceClient, passing its server connection information
-                FaceClient faceClient = new FaceClient(faceConnectionInformation);
+                var faceClient = new FaceClient(faceConnectionInformation);
 
                 // Represents the photo files in base 64 string
                 string firstPhotoInBase64 = ImageToBase64String(firstPhoto);
