@@ -30,9 +30,7 @@ For more information feel free to take a look at [YooniK.Services.Client](https:
 
 Use it:
 
-You can also use environment variables (YK_FACE_BASE_URL and YK_FACE_X_API_KEY). 
-If so, use the FaceClient empty constructor.
-Machine restart could be required.
+You can also use environment variables (YK_FACE_BASE_URL and YK_FACE_X_API_KEY) to identify the access data. Machine restart could be required.
 
 ```csharp
 
@@ -41,7 +39,7 @@ string baseUrl = "YOUR-API-ENDPOINT";
 string subscriptionKey = "YOUR-X-API-KEY-ENDPOINT";
 var faceInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 
-// Instantiate the FaceClient and establish a connection
+// If you have the environment variables set, remove the above and use "var faceClient = new FaceClient()"
 var faceClient = new FaceClient(faceInformation);
 
 // Verifies the faces similarity between two images in base 64
