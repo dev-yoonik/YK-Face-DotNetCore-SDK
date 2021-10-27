@@ -62,7 +62,3 @@ Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
 ## Contact & Support
 
 For more information and trial licenses please [contact us](mailto:tech@yoonik.me) or join us at our [discord community](https://discord.gg/SqHVQUFNtN).
-
-
-
-
