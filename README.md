@@ -8,8 +8,6 @@
 
 This repository implements an integration SDK to facilitate the consumption of the YooniK.Face API, an [YooniK Services](https://yoonik.me) offering.
 
-For more information please [contact us](mailto:tech@yoonik.me).
-
 ## Getting started
 
 To import the latest this solution into your project, enter the following command in the NuGet Package Manager Console in Visual Studio:
@@ -60,3 +58,11 @@ Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
 
 
  If you're interested in using YooniK.Face API for identification purposes, please visit our [sample project](https://github.com/dev-yoonik/YK-Face-SDK-DotNetCore/tree/main/YooniK.Face/YooniK.Face.Client.Sample).
+
+## Contact & Support
+
+For more information and trial licenses please [contact us](mailto:tech@yoonik.me) or join us at our [discord community](https://discord.gg/SqHVQUFNtN).
+
+
+
+
