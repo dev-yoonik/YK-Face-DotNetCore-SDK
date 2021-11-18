@@ -59,6 +59,10 @@ Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
 
  If you're interested in using YooniK.Face API for identification purposes, please visit our [sample project](https://github.com/dev-yoonik/YK-Face-SDK-DotNetCore/tree/main/YooniK.Face/YooniK.Face.Client.Sample).
 
+## YooniK Face API Details
+
+For a complete specification of our Face API please check the [swagger file](https://dev-yoonik.github.io/YK-Face-Documentation/).
+
 ## Contact & Support
 
 For more information and trial licenses please [contact us](mailto:tech@yoonik.me) or join us at our [discord community](https://discord.gg/SqHVQUFNtN).
