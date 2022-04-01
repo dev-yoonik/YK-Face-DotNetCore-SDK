@@ -35,7 +35,7 @@ namespace YooniK.Face.Client.Tests
         [TestCase(Valid.BaseImage64, new[] { ProcessingsEnum.Templify, ProcessingsEnum.Analyze, ProcessingsEnum.Detect })]
         public async Task ProcessAsync_ValidParameters_Success(string b64Image, IEnumerable<ProcessingsEnum> processings)
         {
-            var response = await faceClient.ProcessAync(b64Image, new List<ProcessingsEnum>(processings));
+            var response = await faceClient.ProcessAsync(b64Image, new List<ProcessingsEnum>(processings));
             Assert.IsInstanceOf<List<ProcessResponse>>(response);
             foreach (var process in response)
                 Assert.IsNotNull(process.Height);
@@ -47,7 +47,7 @@ namespace YooniK.Face.Client.Tests
         public void ProcessAsync_NullParameters_ExceptionThrown(string b64Image, IEnumerable<ProcessingsEnum> processings)
         {
             List<ProcessingsEnum> processingsList = processings != null ? new List<ProcessingsEnum>(processings) : null;
-            Assert.ThrowsAsync<ArgumentNullException>(async () => await faceClient.ProcessAync(b64Image, processingsList));
+            Assert.ThrowsAsync<ArgumentNullException>(async () => await faceClient.ProcessAsync(b64Image, processingsList));
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace YooniK.Face.Client.Tests
         public async Task VerifyAsync_ValidParameters_Success(string template1, string template2)
         {
             var response = await faceClient.VerifyAsync(template1, template2);
-            Assert.IsInstanceOf<VerifyResponse>(response);
+            Assert.IsInstanceOf<MatchingResponse>(response);
             Assert.IsNotNull(response.Score);
         }
 
@@ -78,7 +78,7 @@ namespace YooniK.Face.Client.Tests
 
             // PersonId(Gallery Namespace) corresponds to TemplateId(Face Namespace)
             var response = await faceClient.VerifyIdAsync(template, personId, galleryGuid);
-            Assert.IsInstanceOf<VerifyIdResponse>(response);
+            Assert.IsInstanceOf<MatchingResponse>(response);
             Assert.IsNotNull(response.Score);
         }
 
@@ -115,7 +115,7 @@ namespace YooniK.Face.Client.Tests
         public async Task VerifyImagesAsync_ValidParameters_Success(string b64Image1, string b64Image2)
         {
             var response = await faceClient.VerifyImagesAsync(b64Image1, b64Image2);
-            Assert.IsInstanceOf<VerifyImagesResponse>(response);
+            Assert.IsInstanceOf<MatchingResponse>(response);
             Assert.IsNotNull(response.Score);
         }
 

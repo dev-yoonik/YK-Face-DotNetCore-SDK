@@ -6,6 +6,7 @@ using YooniK.Services.Client;
 using YooniK.Face.Client.Models.Requests;
 using YooniK.Face.Client.Models.Responses;
 using YooniK.Services.Client.Common;
+using YooniK.Face.Client.Client.FaceException;
 
 namespace YooniK.Face.Client
 {
@@ -14,7 +15,6 @@ namespace YooniK.Face.Client
         public const string Process = "face/process";
         public const string Verify = "face/verify";
         public const string VerifyId = "face/verify_id";
-        public const string VerifyImages = "face/verify_images";
         public const string Identify = "face/identify";
     }
 
@@ -57,7 +57,7 @@ namespace YooniK.Face.Client
         ///          'templify' - Perform template extraction.
         /// </param>
         /// <returns> A list of <see cref="ProcessResponse"/> (contains the face processed information). </returns>
-        public async Task<List<ProcessResponse>> ProcessAync(string image, List<ProcessRequest.ProcessingsEnum> processings = null)
+        public async Task<List<ProcessResponse>> ProcessAsync(string image, List<ProcessRequest.ProcessingsEnum> processings = null)
         {
             try
             {
@@ -83,8 +83,8 @@ namespace YooniK.Face.Client
         /// </summary>
         /// <param name="firstTemplate"> Biometric template of one face. </param>
         /// <param name="secondTemplate"> Biometric template of another face. </param>
-        /// <returns><see cref="VerifyResponse"/></returns>
-        public async Task<VerifyResponse> VerifyAsync(string firstTemplate, string secondTemplate)
+        /// <returns><see cref="MatchingResponse"/></returns>
+        public async Task<MatchingResponse> VerifyAsync(string firstTemplate, string secondTemplate)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace YooniK.Face.Client
                     request: verify
                     );
 
-               return await _serviceClient.SendRequestAsync<VerifyResponse>(message);
+               return await _serviceClient.SendRequestAsync<MatchingResponse>(message);
             }
             catch (Exception)
             {
@@ -112,8 +112,8 @@ namespace YooniK.Face.Client
         /// <param name="template"> Biometric template to compare. </param>
         /// <param name="templateId"> Identifies the stored template which is going to be compared to. </param>
         /// <param name="galleryId"> Identifies the Gallery in which the Person is enrolled. </param>
-        /// <returns><see cref="VerifyIdResponse"/></returns>
-        public async Task<VerifyIdResponse> VerifyIdAsync(string template, string templateId, string galleryId)
+        /// <returns><see cref="MatchingResponse"/></returns>
+        public async Task<MatchingResponse> VerifyIdAsync(string template, string templateId, string galleryId)
         {
             try
             {
@@ -125,7 +125,7 @@ namespace YooniK.Face.Client
                     request: verifyId
                     );
 
-                return await _serviceClient.SendRequestAsync<VerifyIdResponse>(message);
+                return await _serviceClient.SendRequestAsync<MatchingResponse>(message);
             }
             catch (Exception)
             {
@@ -138,20 +138,31 @@ namespace YooniK.Face.Client
         /// </summary>
         /// <param name="firstImage"> First base 64 string image. </param>
         /// <param name="secondImage"> Second base 64 string image. </param>
-        /// <returns><see cref="VerifyImagesResponse"/></returns>
-        public async Task<VerifyImagesResponse> VerifyImagesAsync(string firstImage, string secondImage)
+        /// <returns><see cref="MatchingResponse"/></returns>
+        public async Task<MatchingResponse> VerifyImagesAsync(string firstImage, string secondImage)
         {
             try
             {
-                var verifyImages = new VerifyImagesRequest(firstImage, secondImage);
+                var firstProcess = ProcessAsync(firstImage);
+                var secondProcess = ProcessAsync(secondImage);
 
-                var message = new RequestMessage(
-                    httpMethod: HttpMethod.Post,
-                    urlRelativePath: FaceEndpoints.VerifyImages,
-                    request: verifyImages
-                    );
+                await Task.WhenAll(new [] { firstProcess, secondProcess });
 
-                return await _serviceClient.SendRequestAsync<VerifyImagesResponse>(message);
+                if (firstProcess.Result.Count > 0 && secondProcess.Result.Count > 0)
+                {
+                    var verify = new VerifyRequest(
+                    firstProcess.Result[0].Template,
+                    secondProcess.Result[0].Template);
+
+                    var message = new RequestMessage(
+                        httpMethod: HttpMethod.Post,
+                        urlRelativePath: FaceEndpoints.Verify,
+                        request: verify
+                        );
+
+                    return await _serviceClient.SendRequestAsync<MatchingResponse>(message);
+                }
+                throw new FaceException("Both images must contain a detected face.");
             }
             catch (Exception)
             {
