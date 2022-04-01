@@ -14,18 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - ProcessAync function name to ProcessAsync
-- VerifyAsync and VerifyImagesAsync return type to MatchingScore.
-- VerifyImages to use the Process and Verify instead of API call.
+- VerifyAsync and VerifyImagesAsync return type to MatchingScore
+- VerifyImages to use the Process and Verify instead of API call
 - README.md badges
 - FaceClient argument type from ConnectionInformation to IConnectionInformation
 
 ### Removed
 
-- VerifyResponse class.
-- VerifyIdResponse class.
-- VerifyImagesResponse class.
-- VerifyImagesRequest class.
-- VerifyImages from the FaceEndpoints.
+- VerifyResponse class
+- VerifyIdResponse class
+- VerifyImagesResponse class
+- VerifyImagesRequest class
+- VerifyImages from the FaceEndpoints
 
 ## v1.0.1 - 2021-10-08
 

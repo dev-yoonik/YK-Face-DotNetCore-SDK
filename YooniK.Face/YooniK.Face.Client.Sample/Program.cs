@@ -35,8 +35,8 @@ namespace YooniK.Face.Sample
                 string secondPhotoInBase64 = ImageToBase64String(secondPhoto);
 
                 // Verifies the faces similarity between two images in base 64
-                MatchingResponse verifyImages = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);
-                Console.WriteLine($"Similarity Score: { verifyImages.Score }");
+                MatchingResponse imagesMatchingScore = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);
+                Console.WriteLine($"Similarity Score: { imagesMatchingScore.Score }");
 
                 // Processes all the image containing faces, and returns its information in a list. This photos only contains one face. 
                 List<ProcessResponse> process = await faceClient.ProcessAsync(firstPhotoInBase64);
@@ -46,8 +46,8 @@ namespace YooniK.Face.Sample
                 string secondPhotoTemplate = process2.Count == 1 ? process2[0].Template : null;
 
                 // Verifies the faces similarity between the extracted biometric template from the processed images
-                MatchingResponse verify = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
-                Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
+                MatchingResponse templateMatchingScore = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
+                Console.WriteLine($"Similarity Score (w/Template): {templateMatchingScore.Score}");
 
                 // Unique identifiers for the Gallery
                 string galleryGuid = Guid.NewGuid().ToString();
