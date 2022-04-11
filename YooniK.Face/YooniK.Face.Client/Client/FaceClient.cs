@@ -8,6 +8,7 @@ using YooniK.Face.Client.Models.Responses;
 using YooniK.Services.Client.Common;
 using YooniK.Face.Client.Client.FaceException;
 
+
 namespace YooniK.Face.Client
 {
     public static class FaceEndpoints
@@ -148,21 +149,25 @@ namespace YooniK.Face.Client
 
                 await Task.WhenAll(new [] { firstProcess, secondProcess });
 
-                if (firstProcess.Result.Count > 0 && secondProcess.Result.Count > 0)
-                {
-                    var verify = new VerifyRequest(
+                var error_message = Client.Utils.face_process_validation(firstProcess.Result);
+                if (error_message != Client.Utils.FaceProcessErrors.None)
+                    throw new FaceException("First Image: " + error_message);
+
+                error_message = Client.Utils.face_process_validation(secondProcess.Result);
+                if (error_message != Client.Utils.FaceProcessErrors.None)
+                    throw new FaceException("Second Image: " + error_message);
+
+                var verify = new VerifyRequest(
                     firstProcess.Result[0].Template,
                     secondProcess.Result[0].Template);
 
-                    var message = new RequestMessage(
-                        httpMethod: HttpMethod.Post,
-                        urlRelativePath: FaceEndpoints.Verify,
-                        request: verify
-                        );
+                var message = new RequestMessage(
+                    httpMethod: HttpMethod.Post,
+                    urlRelativePath: FaceEndpoints.Verify,
+                    request: verify
+                    );
 
-                    return await _serviceClient.SendRequestAsync<MatchingResponse>(message);
-                }
-                throw new FaceException("Both images must contain a detected face.");
+                return await _serviceClient.SendRequestAsync<MatchingResponse>(message);
             }
             catch (Exception)
             {

@@ -5,16 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v2.0.0
+## unreleased
 
 ### Added
 
+- Face process return object single face validation, with unit tests.
 - FaceClient empty constructor that automatically reads the environment variables
 
 ### Changed
 
 - ProcessAync function name to ProcessAsync
-- VerifyAsync and VerifyImagesAsync return type to MatchingScore
+- VerifyAsync and VerifyImagesAsync return type to MatchingResponse
 - VerifyImages to use the Process and Verify instead of API call
 - FaceClient argument type from ConnectionInformation to IConnectionInformation
 
