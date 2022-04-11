@@ -17,6 +17,12 @@ namespace YooniK.Face.Client.Client
             public const string MultipleFacesDetected = "Multiple faces detected";
         }
 
+        /// <summary>
+        ///  Checks if the face process returned object has indeed an <see cref="ProcessResponse"/> object (i.e it has a detected face)
+        ///  and if it only has one (i.e only one face was detected)
+        /// </summary>
+        /// <param name="processResponse">List of <see cref="List{ProcessResponse}"/></param>
+        /// <returns><see cref="FaceProcessErrors"/> corresponding message</returns>
         public static string face_process_validation(List<ProcessResponse> processResponse)
         {
             if (processResponse.Count == 0)
