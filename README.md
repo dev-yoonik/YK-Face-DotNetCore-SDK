@@ -41,8 +41,8 @@ var faceInformation = new ConnectionInformation(baseUrl, subscriptionKey);
 var faceClient = new FaceClient(faceInformation);
 
 // Verifies the faces similarity between two images in base 64
-VerifyImagesResponse verifyImages = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);
-Console.WriteLine($"Similarity Score: { verifyImages.Score }");
+MatchingResponse imagesMatchingResponse = await faceClient.VerifyImagesAsync(firstPhotoInBase64, secondPhotoInBase64);
+Console.WriteLine($"Similarity Score: { imagesMatchingResponse.Score }");
 
 // Processes all the image containing faces, and returning them in a list. This photo only contains one face. 
 List<ProcessResponse> process = await faceClient.ProcessAync(firstPhotoInBase64);
@@ -52,8 +52,8 @@ List<ProcessResponse> process2 = await faceClient.ProcessAync(secondPhotoInBase6
 string secondPhotoTemplate = process2.Count == 1 ? process2[0].Template : null;
 
 // Verifies the faces similarity between the extracted biometric template from the processed images
-VerifyResponse verify = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
-Console.WriteLine($"Similarity Score (w/Template): {verify.Score}");
+MatchingResponse templatesMatchingResponse = await faceClient.VerifyAsync(firstPhotoTemplate, secondPhotoTemplate);
+Console.WriteLine($"Similarity Score (w/Template): {templatesMatchingResponse.Score}");
 ```
 
 
